@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- 全局基础 ---------- */
+@layer base {
+  html {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+      Roboto, Helvetica, Arial, sans-serif;
+  }
+  body {
+    @apply text-gray-800;
+  }
+}
+
+/* #app 保底居中（即使 Tailwind 失效也生效） */
+html,
+body,
+#app {
+  height: 100%;
+}
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- 统一组件样式 ---------- */
+@layer components {
+  /* 卡片容器 */
+  .card {
+    @apply bg-white/80 backdrop-blur
+      border border-white/30
+      shadow-xl rounded-3xl
+      w-full max-w-lg
+      p-10
+      flex flex-col gap-6 items-center;
+  }
+
+  /* 按钮通用 */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2
+      px-5 py-2.5 rounded-xl font-medium text-white
+      shadow hover:shadow-lg
+      transition-all duration-150
+      focus:outline-none focus:ring-2 focus:ring-offset-2
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* 主、次、危险按钮配色 */
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-indigo-500 to-purple-500
+      hover:from-indigo-600 hover:to-purple-600
+      focus:ring-indigo-500;
+  }
+  .btn-secondary {
+    @apply btn bg-gradient-to-r from-emerald-500 to-teal-500
+      hover:from-emerald-600 hover:to-teal-600
+      focus:ring-emerald-500;
+  }
+  .btn-danger {
+    @apply btn bg-gradient-to-r from-rose-500 to-pink-500
+      hover:from-rose-600 hover:to-pink-600
+      focus:ring-rose-500;
+  }
+
+  /* 棋盘外围容器 */
+  .goban-wrap {
+    @apply bg-amber-100 rounded-3xl shadow-inner flex items-center justify-center;
+  }
+}
+
+/* ---------- 优化滚动条（WebKit） ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}

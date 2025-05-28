@@ -1,0 +1,40 @@
+
+@tailwind components;
+/* --- Design Tokens --- */
+:root{
+  /* brand gradient */
+  --from:#7c3aed; --to:#22c55e;
+  --glass-bg:hsla(0,0%,100%,.92);
+  --glass-border:hsla(0,0%,100%,.4);
+  --radius:1.75rem; --shadow:0 8px 20px rgba(0,0,0,.06);
+  --btn-h:52px;
+}
+
+/* --- Components --- */
+@layer components{
+  .card{background:var(--glass-bg);border:1px solid var(--glass-border);
+        border-radius:var(--radius);box-shadow:var(--shadow);@apply backdrop-blur p-8;}
+
+  .btn{height:var(--btn-h);@apply w-full font-semibold inline-flex items-center justify-center
+         text-white rounded-full transition active:scale-95;}
+  .btn-primary{background:linear-gradient(90deg,var(--from),var(--to));}
+  .btn-secondary{@apply bg-rose-500;}
+  .input{@apply w-full border rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-violet-400;}
+}
+
+/* utility */
+.scroll-y{ @apply overflow-y-auto; scrollbar-width:thin;}
+.scroll-y::-webkit-scrollbar{width:6px;} .scroll-y::-webkit-scrollbar-thumb{background:#0002;border-radius:4px;}
+
+/* Toast */
+.toast{ @apply fixed bottom-8 left-1/2 -translate-x-1/2
+  bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg
+  animate-fade-in-out pointer-events-none; }
+
+/* keyframes */
+@keyframes fade-in-out{
+  0%,20%{opacity:0;transform:translate(-50%,20px);}
+  30%,80%{opacity:1;transform:translate(-50%,0);}
+  100%{opacity:0;transform:translate(-50%,20px);}
+}
+.animate-fade-in-out{animation:fade-in-out 3s both;}
